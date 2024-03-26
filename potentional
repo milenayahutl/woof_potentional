@@ -1,0 +1,28 @@
+f=open('students.csv', encoding='utf8')
+s=f.readlines()
+s.pop(0)
+oc=0
+
+for i in range(len(s)):
+    s[i]=s[i].strip().split(',')
+
+for i in range(len(s)):
+    if 'Хадаров Владимир' in s[i][1]:
+        print(f'Ты получил: {s[i][4]}, за проект - {s[i][2]}')
+
+
+d={}
+for i in range(len(s)):
+    if s[i][4]!='None':
+        clas=s[i][3]
+        score=int(s[i][4])
+        if clas not in d:
+            d[clas]=[score]
+        else:
+            d[clas]+=[score]
+for clas in d:
+    d[clas]=round(sum(d[clas])/len(d[clas]),3)
+
+for i in range(len(s)):
+    if s[i][4] == 'None':
+        s[i][4]=str(d[s[i][3]])
