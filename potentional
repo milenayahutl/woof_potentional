@@ -26,3 +26,10 @@ for clas in d:
 for i in range(len(s)):
     if s[i][4] == 'None':
         s[i][4]=str(d[s[i][3]])
+
+f=open('students.csv', 'w', encoding='utf8')
+f.writelines('id,none,tipleProject_id,class,score\n')
+
+for x in s:
+    f.writelines(','.join(x)+'\n')
+f.close()
